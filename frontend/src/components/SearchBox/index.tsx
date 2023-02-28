@@ -6,7 +6,11 @@ interface SearchBoxProps {
   onSubmit: (values: SearchBoxValues) => void
 }
 const SearchBox: React.FC<SearchBoxProps> = ({ onSubmit }) => {
-  const { handleSubmit, register } = useForm<SearchBoxValues>()
+  const { handleSubmit, register } = useForm<SearchBoxValues>({
+    defaultValues: {
+      query: sessionStorage.getItem('query') ?? '',
+    },
+  })
   return (
     <form onSubmit={handleSubmit((values) => onSubmit(values))}>
       <div className="flex gap-x-2 max-w-md">

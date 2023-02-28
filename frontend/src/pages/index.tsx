@@ -12,6 +12,7 @@ const MainPage: React.FC = () => {
     async (values: SearchBoxValues) => {
       const searchResults = await callSearch(values.query)
       if (typeof searchResults !== 'string') setResults(searchResults)
+      sessionStorage.setItem('query', values.query)
     },
     [results]
   )
