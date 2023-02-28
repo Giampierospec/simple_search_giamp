@@ -3,12 +3,14 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import path from 'path'
 import './db/connection'
+import routes from './routes'
 dotenv.config()
 
 const app = express()
 
 const PORT = process.env.PORT || 4000
 app.use(bodyParser.json())
+app.use('/api', ...routes)
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve Production Assets
